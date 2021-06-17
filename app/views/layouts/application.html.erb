@@ -5,12 +5,95 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+   <% if flash[:notice] %>
+    <div class="notification is-info">
+      <p class="notice"><%= notice %></p>
+    </div>
+   <% end %>
+   
+   <% if flash[:alert] %>
+    <div class="notification is-danger">
+      <p class="alert"><%= alert %></p>
+    </div>
+   <% end %>
+   
+   <nav class="navbar is-warning">
+    <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+        <h1 class="title is-4" style="font-family: cursive;">Pote Share</h1>
+      <% end %>
+       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+      </div>
+       <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <div class="navbar-item">
+            </div>
+        </div>
+        <div class="navbar-end">
+          <a class="navbar-item"></a>
+          <a class="navbar-item"></a>
+      
+      <% if user_signed_in? %>
+       <div class="navbar-item has-dropdown is-hoverable" style="margin-right: 100px;">
+        <a class="navbar-item"><%= current_user.username %></a>
+         <a class="navbar-item title">
+        <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png", class: "profile_image is-rounded" %>
+        </a>
+          <div class="navbar-dropdown">
+            <a href="" class="navbar-item"></a>
+            <a href="" class="navbar-item"></a>
+              <hr class="navbar-divider">
+               <%= link_to "ルーム登録",new_room_path,class:"navber-item" %>
+               <br>
+               <%= link_to "予約済みルーム一覧",reservations_path,class:"navber-item" %>
+               <br>
+               <%= link_to "登録済みルーム一覧",rooms_path,class:"navber-item" %>
+               <br>
+               <%= link_to "設定",edit_user_registration_path ,class:"navber-item" %>
+               <br>
+               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "navbar-item" %>
+               <br>
+          </div>
+        </div>
+      <% else %>  
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+             <div class="field is-grouped">
+               <p class="control">
+                 <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>
+               </p>
+               <p class="control">
+                 <%= link_to "登録する", new_user_registration_path, class: "button is-warning is-light" %>
+               </p>
+             </div>
+           </div>
+         </div>
+        </div>
+       <% end %>
+      </div>
+     </div>  
+    </nav>
+    <script>
+$(document).ready(function() {
+  $(".navbar-burger").click(function() {
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+  });
+});
+</script>
+
     <%= yield %>
   </body>
 </html>

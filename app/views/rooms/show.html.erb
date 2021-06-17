@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <%= attachment_image_tag @room, :image %>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4"><%= @room.title %></h2>
+                <p class="card-text is-3"><%= @room.address %></h4>
+                <p class="card-text is-3"><%= @room.body %></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card p-3 md-4">
+            <h3 class="h4 text-primary">¥<%= @room.fee %>/日</h3>
+            <%= render 'form2',reservation: @reservation %>
+          </div>
+　　　　  </div>
+　　　  </div>
+　　  </div>
+　  </div>
+  </div>
+</section>

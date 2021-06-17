@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reservations</h1>
+
+<p id="notice"><%= notice %></p>
+
+<h1 class="display-4 text-primary">予約済みルーム一覧</h1>
+
+<table class="table mt-5 mb-5">
+  <thead>
+    <tr>
+      <th>ルーム画像</th>
+      <th>ルーム名</th>
+      <th>ルーム紹介</th>
+      <th>合計料金</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>予約確定日時</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+         <td>
+          <%= link_to room_path(@reservations) do %>
+          <%= attachment_image_tag reservation.room, :image %>
+          <% end %>
+        </td>
+        <td><%= link_to reservation.room.title,room_path(@reservations) %></td>
+        <td><%= reservation.room.body %></td>
+        <td><%= reservation.sum_fee %></td>
+        <td><%= reservation.start_on %></td>
+        <td><%= reservation.end_on %></td>
+        <td><%= reservation.created_at.to_s(:datetime_jp) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

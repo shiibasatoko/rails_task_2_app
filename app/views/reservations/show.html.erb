@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+ <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <h1 class="display-4 text-primary">予約内容確認</h1>
+        <div class="field">
+          ¥<%= @reservation.room.fee %>/日
+         </div>
+         
+         <div class="field">
+          <strong>開始日:</strong>
+          <%= @reservation.start_on %>
+         </div>
+         
+         <div class="field">
+          <strong>終了日:</strong>
+  　　　　　　<%= @reservation.end_on %>
+         </div>
+         
+         <div class="field">
+           <strong>日数:</strong>
+           <%= @reservation.days %>日
+         </div>
+         
+         <div class="field">
+           <strong>人数:</strong>
+           <%= @reservation.people %>人
+         </div>
+         
+         <div class="field">
+           <strong>合計金額:</strong>
+           <%= @reservation.sum_fee %>円
+         </div>
+         
+          <p>上記内容でよろしければ、「予約を確定」を押してください</p>
+          
+          <div class="actions">
+           <%= link_to "予約を確定",finished_reservation_path(@reservation.id),class: "button is-success" %>
+         </div>
+         <div class="actions">
+           <%= link_to "ルーム詳細へ戻る",room_path(@reservation.room_id),class: "button is-success" %>
+         </div>
+        </div>
+      </div>
+    </div>
+   </div>
+ </section>
+
+
