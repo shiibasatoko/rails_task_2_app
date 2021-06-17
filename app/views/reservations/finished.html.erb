@@ -1,0 +1,31 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <h1 class="display-4 text-primary">ご予約ありがとうございます。</h1>
+        <h1 class="display-4 text-primary">予約を確定しました。</h1>
+        
+         <div class="field">
+           <strong>ルーム名:</strong>
+          <%= @reservation.room.title %>
+         </div>
+         
+         <div class="field">
+          <strong>開始日:</strong>
+          <%= @reservation.start_on %>
+         </div>
+         
+         <div class="field">
+          <strong>終了日:</strong>
+  　　　　　　<%= @reservation.end_on %>
+         </div>
+         
+         <div class="field">
+           <strong>合計金額:</strong>
+           <%= @reservation.sum_fee %>円
+         </div>
+      </div>
+    </div>
+  </div>
+</section>  
+

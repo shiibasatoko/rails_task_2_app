@@ -1,0 +1,40 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        ルーム一覧
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @rooms.each do |room| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to room_path(room) do %>
+                  <%= attachment_image_tag room, :image %>
+                <% end %>
+              </figure>
+            </div>
+          <%= link_to room_path(room) do %>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <div class="title"><%=room.title %></div>
+                  <div class="title"><%=room.address %></div>
+                  <div class="title">¥<%=room.fee %></div>
+          <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

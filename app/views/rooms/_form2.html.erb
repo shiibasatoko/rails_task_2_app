@@ -1,0 +1,58 @@
+<%= form_with(model: reservation) do |form| %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+        <% r@eservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @reservation do |f| %>
+         <%= f.hidden_field :room_id,{value:reservation.room_id} %>
+         <div class="field">
+          <%= form.label :start_on,"開始日",class:"label" %>
+          <%= form.date_field :start_on,:placeholder => "年/月/日",class:"input" %>
+         </div>
+
+         <div class="field">
+          <%= form.label :end_on,"終了日",class:"label"%>
+          <%= form.date_field :end_on,:placeholder => "年/月/日",class:"input" %>
+         </div>
+
+        <div class="field">
+         <%= form.label :people,"人数",class:"label" %>
+         <%= form.number_field :people,class:"input" %>
+        </div>
+        
+        <div class="field">
+          <%= f.hidden_field:days,{value: @reservation.days} %>
+        </div>
+        
+         <div class="field">
+          <%= f.hidden_field:sum_fee,{value: @reservation.sum_fee} %>
+        </div>
+      
+      <% if user_signed_in? %>
+       <div class="actions">
+        <%= form.submit "予約する",class: "button is-success" %>
+       </div>
+      <% else %> 
+       <div class="actions">
+        <%= link_to "ログイン",new_user_session_path,class: "button is-success" %>
+       </div>
+      <% end %>
+       
+     <% end %>
+  <% end %>   
+    </div>
+   </div>
+  </div>
+</section>

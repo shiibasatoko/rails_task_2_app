@@ -1,0 +1,36 @@
+<section class="section">
+  <article class="media">
+    <div class="media-content">
+      <div class="content has-text-centered">
+        <p>
+          <strong class="is-size-1" style="font-family: cursive;">Potepan Shareでまだ経験したことのない旅をしよう</strong>
+        </p>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-5">
+          <br>
+           <%= form_with url: search_rooms_path,method: :get,local: :true do |f| %>
+            <%= f.hidden_field :range, :value => @room %>
+            <%= f.hidden_field :search,:value =>"partial_match" %>
+           <div class="field">
+            <%= f.label :word,"エリア/フリーワード", class: "label" %>
+            <%= f.text_field :word,:placeholder => "例）東京/金額", class: "input" %>
+           </div> 
+          <br>
+              <%= f.submit "検索",class: "button is-warning is-fullwidth" %>
+           <% end %>   
+        </div>
+      </div>
+    </div>
+  </article>
+  <br>
+  <div class="columns is-centered">
+    <div class="column">
+      <figure>
+        <div class="main-image"></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+

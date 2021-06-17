@@ -1,0 +1,52 @@
+<%= form_with(model: room) do |form| %>
+  <% if @room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+      <ul>
+        <% @room.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @room do |f| %> 
+         <div class="field">
+          <%= form.label :title,"ルーム名",class:"label" %>
+          <%= form.text_field :title,:placeholder => "ルーム名",class:"input" %>
+         </div>
+
+         <div class="field">
+          <%= form.label :body,"ルーム紹介",class:"label"%>
+          <%= form.text_area :body,:placeholder => "ルーム説明を入力",class:"input" %>
+         </div>
+
+        <div class="field">
+         <%= form.label :fee,"料金",class:"label" %>
+         <%= form.number_field :fee,:placeholder => "一日あたりの料金を入力",class:"input" %>
+        </div>
+
+        <div class="field">
+         <%= form.label :address,"住所",class:"label" %>
+         <%= form.text_field :address,:placeholder => "住所を入力",class:"input" %>
+        </div>
+
+        <div class="field">
+         <%= form.label :image,"ルーム画像",class:"label" %>
+         <%= form.attachment_field :image,class:"input" %>
+        </div>
+
+       <div class="actions">
+        <%= form.submit "登録",class: "button is-success" %>
+       </div>
+     <% end %>
+<% end %>
+    </div>
+   </div>
+  </div>
+</section>

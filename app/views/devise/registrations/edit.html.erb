@@ -1,0 +1,57 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%= link_to "プロフィール",user_path(@user) %>
+      </h1>
+      <h1 class="title">
+        <%= link_to "アカウント変更",edit_user_registration_path %>
+      </h1>
+    </div>
+  </div>
+</section>
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+ 
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+       <div class="field">
+        <%= f.label :メールアドレス, class: "label" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "input" %>
+       </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :新しいパスワード,class: "label" %>
+    <%= f.password_field :password, autocomplete: "new-password",:placeholder => "変更したくない場合は空白のままにします",class: "input" %>
+    <% if @minimum_password_length %>
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :新しいパスワード（確認用）,class: "label" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "input" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :現在のパスワード,class: "label" %> 
+    <%= f.password_field :current_password, autocomplete: "current-password",:placeholder => "変更を確認するには、現在のパスワードが必要です",class: "input" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新", class: "button is-success" %>
+  </div>
+<% end %>
+
+  <div class="actions">
+    <%= button_to "ログアウト", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "button is-success" %>
+  </div> 
+  
